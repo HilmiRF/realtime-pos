@@ -1,5 +1,6 @@
 "use client";
 
+import FormInput from "@/components/commons/form-input";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -28,7 +29,9 @@ export default function Login() {
 		defaultValues: INITIAL_LOGIN_FORM,
 	});
 
-	const onSubmit = form.handleSubmit(async (data) => {});
+	const onSubmit = form.handleSubmit(async (data) => {
+		console.log(data);
+	});
 	return (
 		<Card className="gap-4">
 			<CardHeader className="text-center">
@@ -39,42 +42,20 @@ export default function Login() {
 				<Form {...form}>
 					<form onSubmit={onSubmit} className="space-y-4">
 						{/* Email Field */}
-						<FormField
-							control={form.control}
+						<FormInput
+							form={form}
+							label="Email"
 							name="email"
-							render={({ field: { ...rest } }) => (
-								<FormItem>
-									<FormLabel>Email</FormLabel>
-									<FormControl>
-										<Input
-											{...rest}
-											type="email"
-											placeholder="test@mail.com"
-											autoComplete="off"
-										/>
-									</FormControl>
-									<FormMessage className="text-xs" />
-								</FormItem>
-							)}
+							placeholder="test@mail.com"
+							type="email"
 						/>
 						{/* Password Field */}
-						<FormField
-							control={form.control}
+						<FormInput
+							form={form}
+							label="Password"
 							name="password"
-							render={({ field: { ...rest } }) => (
-								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<FormControl>
-										<Input
-											{...rest}
-											type="password"
-											placeholder="***"
-											autoComplete="off"
-										/>
-									</FormControl>
-									<FormMessage className="text-xs" />
-								</FormItem>
-							)}
+							placeholder="***"
+							type="password"
 						/>
 						<Button
 							className="w-full bg-teal-500 hover:bg-teal-600 text-primary"
